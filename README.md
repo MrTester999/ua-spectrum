@@ -27,6 +27,18 @@ low-entropy Client Hints, and all-tab health repair.
 It is intended for authorized browser testing, compatibility checks, and privacy
 experiments. It does not claim to provide a complete anti-fingerprinting boundary.
 
+## Screenshots
+
+| Live protection dashboard | Locked tab identity |
+|---|---|
+| ![UA Spectrum live dashboard](screenshots/ua-spectrum-dashboard.png) | ![UA Spectrum identity lock](screenshots/ua-spectrum-identity-lock.png) |
+
+### Rotation and targeting
+
+<p align="center">
+  <img src="screenshots/ua-spectrum-settings.png" width="440" alt="UA Spectrum rotation and targeting settings">
+</p>
+
 ## Features
 
 - **Per-tab isolation:** each eligible HTTP(S) tab receives its own DNR rule.
