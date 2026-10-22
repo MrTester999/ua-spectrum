@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>UA Spectrum</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="logo">UA</div>
+    <div class="brand"><div class="brand-line"><h1>UA Spectrum</h1><span class="pro-badge">PRO</span></div><p>Network identity control</p></div>
+    <label class="switch" title="Enable UA spoofing"><input id="enabled" type="checkbox"><span></span></label>
+  </header>
+
+  <main>
+    <section class="status-card">
+      <div class="status-line">
+        <span id="statusDot" class="status-dot"></span>
+        <div><strong id="statusText">Protection off</strong><small id="coverageText">Native browser identity</small></div>
+        <span id="catalogCount" class="count">— agents</span>
+      </div>
+
+      <div class="identity-head">
+        <div><span class="eyebrow">Current network identity</span><div id="identity" class="identity empty">Native User-Agent</div></div>
+        <span id="siteBadge" class="site-badge">No web page</span>
+      </div>
+
+      <div class="meta-grid">
+        <div><span>Browser</span><strong id="browserValue">Native</strong></div>
+        <div><span>Platform</span><strong id="platformValue">System</strong></div>
+        <div><span>Policy</span><strong id="policyValue">Off</strong></div>
+        <div><span>Updated</span><strong id="changedValue">—</strong></div>
+      </div>
+
+      <div class="coverage-card">
+        <div class="coverage-head">
+          <span>All-tabs coverage</span>
+          <strong id="coverageValue">0 / 0 protected</strong>
+        </div>
+        <div class="coverage-track" role="progressbar" aria-label="Protected browser tabs" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span id="coverageFill"></span>
+        </div>
+      </div>
+
+      <div class="ua-box">
+        <div class="ua-head"><span>Current User-Agent header</span><button id="copyUa" class="copy-btn" type="button">Copy</button></div>
+        <code id="currentUa">Loading current identity…</code>
+      </div>
+      <div class="actions">
+        <button id="rotate" class="primary" type="button"><span>↻</span> Rotate this tab</button>
+        <button id="rotateAll" class="action-secondary" type="button"><span>⟳</span> Rotate all tabs</button>
+      </div>
+      <div class="site-tools" aria-label="Current site controls">
+        <button id="lockIdentity" class="tool-button" type="button"><span>◆</span> Lock identity</button>
+        <button id="toggleSite" class="tool-button" type="button"><span>⊘</span> Exclude this site</button>
+      </div>
+    </section>
+
+    <details class="settings-card">
+      <summary><span><strong>Rotation &amp; targeting</strong><small>Advanced configuration</small></span><span class="chevron">⌄</span></summary>
+      <div class="settings-body">
+      <label class="field"><span>Rotation policy</span>
+        <select id="mode">
+          <option value="navigation">Every navigation</option>
+          <option value="focus">When tab gains focus</option>
+          <option value="tab">Stable per tab · fastest</option>
+          <option value="interval30">Every 30 seconds</option>
+          <option value="interval300">Every 5 minutes</option>
+        </select>
+      </label>
+
+      <div class="group"><span class="group-title">Browsers</span><div id="browsers" class="chips"></div></div>
+      <div class="group"><span class="group-title">Platforms</span><div id="platforms" class="chips"></div></div>
+
+      <label class="field domain-field"><span>Never spoof these domains</span>
+        <textarea id="excluded" rows="3" placeholder="localhost&#10;example.com"></textarea>
+      </label>
+        <button id="save" class="secondary" type="button">Save configuration</button>
+        <div class="config-tools">
+          <button id="exportSettings" class="config-button" type="button">Export settings</button>
+          <button id="importSettings" class="config-button" type="button">Import settings</button>
+          <input id="settingsFile" type="file" accept=".json,application/json" hidden>
+        </div>
+      </div>
+    </details>
+
+    <p class="footnote"><span>ⓘ</span> Network headers and common Client Hints are synchronized per eligible tab. JavaScript fingerprint properties remain browser-controlled.</p>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
